@@ -1,8 +1,4 @@
-.glyStyle{
-    width: 15px;
-    height: 15px;
-}
-
-h3{
-    font-size: 50px;
+.glyphicon{
+    font-size: 35px; 
+    color: green;
 }

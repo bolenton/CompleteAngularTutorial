@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-favorite',
@@ -8,7 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class FavoriteComponent implements OnInit {
   
   //Properties
-  @Input() isFavorite: boolean; 
+  @Input('isFavorite') isFavorite: boolean;
   glyStyle = "glyphicon glyphicon-star-empty"
 
   //Ctor
