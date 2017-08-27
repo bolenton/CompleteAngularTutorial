@@ -1,0 +1,7 @@
+<input [(ngModel)]="email" (keyup.enter)="onKeyUp()" />
+
+<div (click)="onDivClicked()">
+    <button (click)="onSave($event)">Save</button>
+</div> 
+
+<p>{{ title | summary:5}}</p>
