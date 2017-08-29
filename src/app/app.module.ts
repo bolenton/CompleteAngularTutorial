@@ -10,8 +10,12 @@ import { FormsModule } from '@angular/forms';
 import { FavoriteComponent } from './favorite/favorite.component';
 import { PanelComponent } from './panel/panel.component';
 import { LikeComponent } from './like/like.component';
+import { InputFormatDirective } from './input-format.directive';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 
-@NgModule({   
+@NgModule({  
+  // Here you want to register all your directives, 
+  // pipes, components, or you get an error. 
   declarations: [
     AppComponent,
     CoursesComponent,
@@ -19,7 +23,9 @@ import { LikeComponent } from './like/like.component';
     SummaryPipe,
     FavoriteComponent,
     PanelComponent,
-    LikeComponent
+    LikeComponent,
+    InputFormatDirective,
+    ContactFormComponent
   ],
 
   imports: [
