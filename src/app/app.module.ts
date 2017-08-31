@@ -12,8 +12,9 @@ import { PanelComponent } from './panel/panel.component';
 import { LikeComponent } from './like/like.component';
 import { InputFormatDirective } from './input-format.directive';
 import { ContactFormComponent } from './contact-form/contact-form.component';
+import { SignupFormComponent } from "app/signup-form/signup-form.component";
 
-@NgModule({  
+@NgModule({
   // Here you want to register all your directives, 
   // pipes, components, or you get an error. 
   declarations: [
@@ -25,7 +26,8 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
     PanelComponent,
     LikeComponent,
     InputFormatDirective,
-    ContactFormComponent
+    ContactFormComponent,
+    SignupFormComponent
   ],
 
   imports: [
