@@ -1,12 +1,14 @@
+<div class="container">
+  <input type="text" class="form-control" (keyup.enter)="createPost(title)" #title>
+  
+   <ul class="list-group">
+    <li *ngFor="let post of posts" class="list-group-item"> 
+      <button (click)="updatePost(post)" class="btn btn-warning btn-sm">Update</button> 
+      <button (click)="deletePost(post)" class="btn btn-danger btn-sm">delete</button> 
+      {{ post.title }}
+    </li>
+  </ul> 
+</div>
 
-<input type="text" class="form-control" (keyup.enter)="createPost(title)" #title>
-
- <ul class="list-group">
-  <li *ngFor="let post of posts" class="list-group-item"> 
-    <button (click)="updatePost(post)" class="btn btn-warning btn-sm">Update</button> 
-    <button (click)="deletePost(post)" class="btn btn-danger btn-sm">delete</button> 
-    {{ post.title }}
-  </li>
-</ul> 
 
 

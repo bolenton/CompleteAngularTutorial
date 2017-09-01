@@ -1,4 +1,4 @@
-import { AuthorsService } from './../authors.service';
+import { AuthorsService } from '../services/authors.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

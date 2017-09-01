@@ -1,4 +1,4 @@
-import { CoursesService } from './../courses.service';
+import { CoursesService } from '../services/courses.service';
 import { Component } from '@angular/core';
 
 @Component({

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from "@angular/http";
+import { PostService } from "app/services/post.service";
 
 @Component({
   selector: 'posts',
@@ -7,43 +8,35 @@ import { Http, Headers, RequestOptions, Response } from "@angular/http";
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  posts: any[];
-  private url: string = 'http://jsonplaceholder.typicode.com/posts';
-  constructor(private http: Http) {}
+  posts;
 
-  createPost(input: HTMLInputElement){
-    let body = { title: input.value }
+  constructor(private service: PostService) {}
+
+  createPost(input: HTMLInputElement) {
+    let post = { title: input.value }
     input.value = '';
-
-    this.http.post(this.url, JSON.stringify(body))
-      .subscribe(response => {
-        body['id'] = response.json().id;
-        this.posts.splice(0, 0, body)
-      })
+    this.service.createPost(post).subscribe(response => {
+      post['id'] = response.json().id;
+      this.posts.splice(0, 0, post);
+    });
   }
 
-  updatePost(post: HTMLInputElement){
-    this.http.patch(this.url+"/"+post.id, JSON.stringify({isRead: true}))
-      .subscribe(response => {
-        console.log(response.json())
-      })
+  updatePost(input: HTMLInputElement) {
+    this.service.updatePost(input).subscribe(response => {
+      console.log(response.json());
+    });
   }
 
-   deletePost(post: HTMLInputElement){
-    this.http.delete(this.url+"/"+post.id)
-      .subscribe(response => {
-        let index = this.posts.indexOf(post);
-        this.posts.splice(index, 1);
-        console.log(response.json())
-      })
+  deletePost(post) {
+    this.service.deletePost(post.id).subscribe(response  => { 
+      let index = this.posts.indexOf(post);
+      this.posts.splice(index, 1);
+    });
   }
 
   ngOnInit() {
-    this.http.get(this.url)
-      .subscribe(response => {
-        this.posts = response.json();
-        console.log(response.json());
-    })
+    this.service.getPost().subscribe(response  => { 
+      this.posts = response.json();
+    });
   }
-
 }
