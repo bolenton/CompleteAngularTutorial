@@ -20,6 +20,7 @@ import { SignupFormComponent } from 'app/signup-form/signup-form.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import { NewCourseFormComponent } from './new-course-form/new-course-form.component';
 import { PostsComponent } from './posts/posts.component';
+import { AppError } from "app/common/app-error";
 
 @NgModule({
   // Here you want to register all your directives,
@@ -36,7 +37,7 @@ import { PostsComponent } from './posts/posts.component';
     ContactFormComponent,
     SignupFormComponent,
     NewCourseFormComponent,
-    PostsComponent,
+    PostsComponent
   ],
 
   imports: [
