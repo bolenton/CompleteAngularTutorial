@@ -1,19 +1,24 @@
-import { SummaryPipe } from './summary.pipe';
-import { AuthorsService } from './authors.service';
-import { CoursesComponent } from './courses/courses.component';
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
-import { CoursesService } from 'app/courses.service';
-import { AuthorsComponent } from './authors/authors.component';
+import { HttpModule } from '@angular/http';
+import { SummaryPipe } from './summary.pipe';
+import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FavoriteComponent } from './favorite/favorite.component';
-import { PanelComponent } from './panel/panel.component';
-import { LikeComponent } from './like/like.component';
+
+import { AuthorsService } from './authors.service';
+import { CoursesService } from 'app/courses.service';
+
 import { InputFormatDirective } from './input-format.directive';
-import { ContactFormComponent } from './contact-form/contact-form.component';
+
+import { AppComponent } from './app.component';
+import { LikeComponent } from './like/like.component';
+import { PanelComponent } from './panel/panel.component';
+import { CoursesComponent } from './courses/courses.component';
+import { AuthorsComponent } from './authors/authors.component';
+import { FavoriteComponent } from './favorite/favorite.component';
 import { SignupFormComponent } from 'app/signup-form/signup-form.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
 import { NewCourseFormComponent } from './new-course-form/new-course-form.component';
+import { PostsComponent } from './posts/posts.component';
 
 
 @NgModule({
@@ -30,13 +35,15 @@ import { NewCourseFormComponent } from './new-course-form/new-course-form.compon
     InputFormatDirective,
     ContactFormComponent,
     SignupFormComponent,
-    NewCourseFormComponent
+    NewCourseFormComponent,
+    PostsComponent,
   ],
 
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpModule
   ],
 
   // Needed for Dependency Injection
