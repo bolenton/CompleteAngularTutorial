@@ -8,20 +8,31 @@ import { Http, Headers, RequestOptions, Response } from "@angular/http";
 })
 export class PostsComponent implements OnInit {
   posts: any[];
+  private url: string = 'http://jsonplaceholder.typicode.com/posts';
   constructor(private http: Http) {
     // const body = { loginname: username, password: password };
     // const headers = new Headers({ 'content-type': 'application/json', 'accept': 'application/json'});
     // const options = new RequestOptions({ headers: headers });
   }
 
+  createPost(input: HTMLInputElement){
+    let body = { title: input.value }
+    input.value = '';
+
+    this.http.post(this.url, JSON.stringify(body))
+      .subscribe(response => {
+        body['id'] = response.json().id;
+        this.posts.splice(0, 0, body)
+      })
+
+      
+  }
+
   ngOnInit() {
-    let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxIiwiY29tbXVuaXR5SUQiOiIxIiwibG9naW5OYW1lIjoic3VydWF0IiwiZXhwIjoiOC8zMS8yMDE3IDExOjU5OjQ4IFBNIn0.varIVwhDnWnnlFRyhevZ1T53XEvG0sOW4vF40hfC0Cg';
-    let headers = new Headers({'Authorization': token});
-    let options = new RequestOptions({ headers: headers });
-    //headers.append("Content-Type", "application/x-www-form-urlencoded");
-    this.http.get('http://churnite.azurewebsites.net/api/member', options).subscribe(response => {
-      this.posts = response.json();
-      console.log(response.json());
+    this.http.get('http://jsonplaceholder.typicode.com/posts')
+      .subscribe(response => {
+        this.posts = response.json();
+        console.log(response.json());
     })
   }
 
