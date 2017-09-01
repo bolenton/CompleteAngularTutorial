@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { SummaryPipe } from './summary.pipe';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,6 +21,9 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import { NewCourseFormComponent } from './new-course-form/new-course-form.component';
 import { PostsComponent } from './posts/posts.component';
 import { AppError } from "app/common/app-error";
+import { AppErrorHandler } from "app/common/app-error-handler";
+import { GithubComponent } from './github/github.component';
+import { GithubFollowersService } from "app/services/github-followers.service";
 
 @NgModule({
   // Here you want to register all your directives,
@@ -37,7 +40,8 @@ import { AppError } from "app/common/app-error";
     ContactFormComponent,
     SignupFormComponent,
     NewCourseFormComponent,
-    PostsComponent
+    PostsComponent,
+    GithubComponent
   ],
 
   imports: [
@@ -51,7 +55,9 @@ import { AppError } from "app/common/app-error";
   providers: [
       CoursesService,
       AuthorsService,
-      PostService
+      PostService,
+      GithubFollowersService,
+      {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
 
   bootstrap: [

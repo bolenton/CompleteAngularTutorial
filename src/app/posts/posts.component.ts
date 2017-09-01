@@ -19,11 +19,15 @@ export class PostsComponent implements OnInit {
   // obserable than they will run the callback
   createPost(input: HTMLInputElement) {
     let post = { title: input.value }
+    this.posts.splice(0, 0, post);
+
     input.value = '';
-    this.service.createPost(post).subscribe(response => {
-      post['id'] = response.json().id;
-      this.posts.splice(0, 0, post);
-    },  (error: AppError) => {
+
+    this.service.create(post).subscribe(newPost => {
+      post['id'] = newPost.id;
+    },  
+    (error: AppError) => {
+      this.posts.splice(0, 1)
       if (error instanceof BadInput) {
         //this.form.setErrors(error.originalError);
       } 
@@ -33,26 +37,28 @@ export class PostsComponent implements OnInit {
 
 
   updatePost(input: HTMLInputElement) {
-    this.service.updatePost(input).subscribe(response => {
-      console.log(response.json());
+    this.service.update(input).subscribe(updatedPost => {
+      console.log(updatedPost);
     });
   }
 
   deletePost(post) {
-    this.service.deletePost(555).subscribe(response  => { 
-      let index = this.posts.indexOf(post);
-      this.posts.splice(index, 1);
-    }, 
-    (error: AppError) => {
-      if (error instanceof NotFoundError)
-        alert("This post has already been deleted")
-      else throw error;
-    }); 
+    let index = this.posts.indexOf(post);
+    this.posts.splice(index, 1);
+
+    this.service.delete(post.id)
+    .subscribe( 
+      null, 
+      (error: AppError) => {
+        this.posts.splice(index, 0, post);
+        if (error instanceof NotFoundError)
+          alert("This post has already been deleted")
+        else throw error;
+      }); 
   }
 
   ngOnInit() {
-    this.service.getPost().subscribe(response  => { 
-      this.posts = response.json();
-    });  
+    this.service.getAll()
+      .subscribe(posts  => this.posts = posts);  
   }
 }
