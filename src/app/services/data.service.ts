@@ -16,7 +16,7 @@ export class DataService {
   constructor(private url: string, private http: Http) { }
 
   // These methods will Hit the end points and pass the observable to the caller.
-  getAll(): Observable<any> {
+  getAll() {
     return this.http.get(this.url)
         .map(response => response.json())
         .catch(this.handleError);

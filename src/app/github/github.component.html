@@ -5,7 +5,7 @@
     </a>
   </div>
   <div class="media-body">
-    <h4 class="media-heading">{{ follower.login }}</h4>
-    <a href="{{follower.html_url}}">{{follower.html_url}}</a>
+    <h4 class="media-heading"><a [routerLink]="['/followers', follower.login, follower.id]">{{ follower.login }}</a></h4>
+    <a routerLink="{{follower.html_url}}">{{follower.html_url}}</a>
   </div>
 </div>
